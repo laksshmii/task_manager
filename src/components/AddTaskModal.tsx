@@ -3,7 +3,6 @@ import { useForm } from '@mantine/form'
 import { useAppDispatch } from '../store/hooks'
 import { addTask } from '../features/tasks/tasksSlice'
 import { DateInput } from '@mantine/dates';
-import { Notification } from '@mantine/core';
 
 
 interface AddTaskModalProps {
