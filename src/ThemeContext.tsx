@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext,  useEffect } from 'react'
 import { useLocalStorage } from '@mantine/hooks'
+import { useMantineColorScheme } from '@mantine/core'
 
 type ThemeContextType = {
   darkMode: boolean
@@ -13,14 +14,16 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     key: 'dark-mode',
     defaultValue: false,
   })
+  const { setColorScheme } = useMantineColorScheme()
 
   useEffect(() => {
+    setColorScheme(darkMode ? 'dark' : 'light')
     if (darkMode) {
       document.documentElement.classList.add('dark')
     } else {
       document.documentElement.classList.remove('dark')
     }
-  }, [darkMode])
+  }, [darkMode, setColorScheme])
 
   const toggleDarkMode = () => setDarkMode(!darkMode)
 

@@ -6,8 +6,9 @@ import { SearchTasks } from './components/SearchTasks/SearchTasks'
 import { Quote } from './components/Quote'
 import { useTheme } from './ThemeContext'
 import { IconSun, IconMoon } from '@tabler/icons-react'
+import { ThemeProvider } from './ThemeContext'
 
-export default function App() {
+function AppContent() {
   const [modalOpened, setModalOpened] = useState(false)
   const { darkMode, toggleDarkMode } = useTheme()
 
@@ -28,12 +29,20 @@ export default function App() {
             <Button onClick={() => setModalOpened(true)}>Add Task</Button>
           </Group>
         </Group>
-
+        
         <Quote />
         <SearchTasks />
         <TaskTable />
         <AddTaskModal opened={modalOpened} onClose={() => setModalOpened(false)} />
       </AppShell.Main>
     </AppShell>
+  )
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   )
 }
